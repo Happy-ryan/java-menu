@@ -27,8 +27,10 @@ public class Application {
         OutputView.printServiceResultMessage();
         OutputView.printResultMessage();
 
+        List<Integer> categoryCodes = CategoryMaker.makeCategoryCodes();
+        System.out.println(categoryCodes);
         for(int number = 0; number < coachNumber ; number++){
-            MenuMaker menuMaker = new MenuMaker(coaches.get(number), List.of(1, 2, 3, 4, 5));
+            MenuMaker menuMaker = new MenuMaker(coaches.get(number), categoryCodes);
             System.out.println(coaches.get(number).getName() + menuMaker.makeFiveDayMenus());
 
         }
