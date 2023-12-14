@@ -10,7 +10,7 @@ public class MenuRecommender {
 
     }
 
-    public List<String> recommadateCategory(int code) {
+    public static List<String> recommadateCategory(int code) {
         if (code == CategoryAndMenu.일식.getCode()) {
             return CategoryAndMenu.일식.getDishes();
         }
@@ -29,7 +29,7 @@ public class MenuRecommender {
         return CategoryAndMenu.UNKNOWN.getDishes();
     }
 
-    public String selectMenu(List<String> menus) {
+    public static String selectMenu(List<String> menus) {
         String menu = Randoms.shuffle(menus).get(0);
         return menu;
     }

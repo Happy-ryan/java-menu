@@ -9,13 +9,16 @@ public class OutputView {
     private static final String serviceResultMessage = "메뉴 추천 결과입니다.";
     private static final String serviceEndMessage = "추천을 완료했습니다.";
     private static final String readCoachNameFormat = "%s(이)가 못 먹는 메뉴를 입력해 주세요.";
+    private static final String resultMessage = "[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]";
+    private static final String resultFormat = "[ %s ]";
+
     private static final int d = 0;
 
     public static void printServiceStartMessage() {
         System.out.println(serviceStartMessage);
     }
 
-    public static void printResultMessage() {
+    public static void printServiceResultMessage() {
         System.out.println(serviceResultMessage);
     }
 
@@ -35,8 +38,17 @@ public class OutputView {
         System.out.println(Parser.joinWithoutBlank(impossibleMenus));
     }
 
+    public static void printResultMessage() {
+        System.out.println(resultMessage);
+    }
+
+    public static void printResultFormat(List<String> string) {
+        System.out.println(String.format(resultFormat, Parser.joinWithBlank(string)));
+    }
+
     public static void print() {
         System.out.println();
     }
+
 
 }

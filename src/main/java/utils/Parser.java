@@ -10,7 +10,7 @@ public class Parser {
 
     // 김성한, 김성한, 김성한 -> OutputView에 도움
     public static String joinWithBlank(List<String> stringList) {
-        return String.join(", ", stringList);
+        return String.join(" | ", stringList);
     }
 
     // List<String> -> List<Integer> 로 변경 -> inputView에 도움

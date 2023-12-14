@@ -20,14 +20,20 @@ public class Application {
         for (int number = 0; number < coachNumber; number++) {
             List<String> impossibleMenus = InputView.readImpossibleMenus(coachNames.get(number));
             OutputView.printImpossibleMenus(impossibleMenus);
+            System.out.println();
             coaches.add(new Coach(coachNames.get(number), impossibleMenus));
         }
 
-        MenuRecommender menuMaker = new MenuRecommender();
-        System.out.println(menuMaker.selectMenu(menuMaker.recommadateCategory(1)));
-        System.out.println(menuMaker.selectMenu(menuMaker.recommadateCategory(1)));
-
+        OutputView.printServiceResultMessage();
         OutputView.printResultMessage();
+
+        for(int number = 0; number < coachNumber ; number++){
+            MenuMaker menuMaker = new MenuMaker(coaches.get(number), List.of(1, 2, 3, 4, 5));
+            System.out.println(coaches.get(number).getName() + menuMaker.makeFiveDayMenus());
+
+        }
+
+        System.out.println();
         OutputView.printEndMessage();
     }
 }
