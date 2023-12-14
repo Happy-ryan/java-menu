@@ -26,14 +26,9 @@ public class MainController {
         OutputView.printResultCategory(categoryCodes);
 
         MenuMaker menuMaker = new MenuMaker(coaches, categoryCodes);
-        for (int day = 0; day < FIVE_DAYS; day++) {
-            menuMaker.makeOneDayCoachMenu(day);
-        }
-        LinkedHashMap<Coach, List<String>> fiveDayMenus = menuMaker.getFiveDayMenus();
+        LinkedHashMap<Coach, List<String>> fiveDayMenus = makeFiveDayMenus(menuMaker);
 
-        for (Coach coach : coaches) {
-            OutputView.printResultCoachMenu(coach.getName(), fiveDayMenus.get(coach));
-        }
+        printFiveDayMenus(fiveDayMenus, coaches);
 
         serviceEnd();
     }
@@ -68,6 +63,20 @@ public class MainController {
     private void printServiceAndResultMessages() {
         OutputView.printServiceResultMessage();
         OutputView.printResultMessage();
+    }
+
+    private LinkedHashMap<Coach, List<String>> makeFiveDayMenus(MenuMaker menuMaker) {
+        for (int day = 0; day < FIVE_DAYS; day++) {
+            menuMaker.makeOneDayCoachMenu(day);
+        }
+        LinkedHashMap<Coach, List<String>> fiveDayMenus = menuMaker.getFiveDayMenus();
+        return fiveDayMenus;
+    }
+
+    private void printFiveDayMenus(LinkedHashMap<Coach, List<String>> fiveDayMenus, List<Coach> coaches) {
+        for (Coach coach : coaches) {
+            OutputView.printResultCoachMenu(coach.getName(), fiveDayMenus.get(coach));
+        }
     }
 
     private void serviceEnd() {
