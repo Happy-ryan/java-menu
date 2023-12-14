@@ -8,6 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 public class Application {
+    private static final int FIVE_DAYS = 5;
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         OutputView.printServiceStartMessage();
@@ -32,13 +34,13 @@ public class Application {
         OutputView.printResultCategory(categoryCodes);
 
         MenuMaker menuMaker = new MenuMaker(coaches, categoryCodes);
-        for(int day = 0; day < 5 ; day++){
+        for (int day = 0; day < FIVE_DAYS; day++) {
             menuMaker.makeOneDayCoachMenu(day);
         }
         LinkedHashMap<Coach, List<String>> fiveDayMenus = menuMaker.getFiveDayMenus();
 
-        for(Coach coach : coaches){
-            OutputView.printResultCoachMenu(coach.getName(),fiveDayMenus.get(coach));
+        for (Coach coach : coaches) {
+            OutputView.printResultCoachMenu(coach.getName(), fiveDayMenus.get(coach));
         }
 
         System.out.println();

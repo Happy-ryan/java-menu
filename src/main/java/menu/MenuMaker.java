@@ -7,7 +7,6 @@ public class MenuMaker {
     private final List<Coach> coachs;
     // 같은 카테고리 3회이상 나오지 않도록 만들어짐!
     private final List<Integer> categoryCodes;
-
     private LinkedHashMap<Coach, List<String>> fiveDayMenus = new LinkedHashMap<>();
 
     public MenuMaker(List<Coach> coachs, List<Integer> categoryCodes) {
@@ -42,6 +41,7 @@ public class MenuMaker {
             }
         }
     }
+
     public LinkedHashMap<Coach, List<String>> getFiveDayMenus() {
         return fiveDayMenus;
     }
