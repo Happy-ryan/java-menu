@@ -1,5 +1,9 @@
 package view;
 
+import utils.Parser;
+
+import java.util.List;
+
 public class OutputView {
     private static final String serviceStartMessage = "점심 메뉴 추천을 시작합니다.";
     private static final String serviceResultMessage = "메뉴 추천 결과입니다.";
@@ -23,7 +27,16 @@ public class OutputView {
         System.out.println(String.format(readCoachNameFormat, name));
     }
 
+    public static void printCoachNames(List<String> coachNames) {
+        System.out.println(Parser.joinWithoutBlank(coachNames));
+    }
+
+    public static void printImpossibleMenus(List<String> impossibleMenus) {
+        System.out.println(Parser.joinWithoutBlank(impossibleMenus));
+    }
+
     public static void print() {
         System.out.println();
     }
+
 }
