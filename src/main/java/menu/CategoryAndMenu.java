@@ -1,8 +1,11 @@
 package menu;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.List;
 
 public enum CategoryAndMenu {
+    UNKNOWN(0, " ", List.of("")),
     일식(1, "일식", List.of("규동", "우동", "미소시루", "스시", "가츠동", "오니기리", "하이라이스", "라멘", "오코노미야끼")),
     한식(2, "한식", List.of("김밥", "김치찌개", "쌈밥", "된장찌개", "비빔밥", "칼국수", "불고기", "떡볶이", "제육볶음")),
     중식(3, "중식", List.of("깐풍기", "볶음면", "동파육", "짜장면", "짬뽕", "마파두부", "탕수육", "토마토 달걀볶음", "고추잡채")),
@@ -29,6 +32,30 @@ public enum CategoryAndMenu {
 
     public List<String> getDishes() {
         return dishes;
+    }
+
+    public List<String> recommadateCategory(int code) {
+        if (code == CategoryAndMenu.일식.getCode()) {
+            return CategoryAndMenu.일식.getDishes();
+        }
+        if (code == CategoryAndMenu.한식.getCode()) {
+            return CategoryAndMenu.한식.getDishes();
+        }
+        if (code == CategoryAndMenu.중식.getCode()) {
+            return CategoryAndMenu.중식.getDishes();
+        }
+        if (code == CategoryAndMenu.아시안.getCode()) {
+            return CategoryAndMenu.아시안.getDishes();
+        }
+        if (code == CategoryAndMenu.양식.getCode()) {
+            return CategoryAndMenu.양식.getDishes();
+        }
+        return CategoryAndMenu.UNKNOWN.getDishes();
+    }
+
+    public String selectDish(List<String> menus) {
+        String menu = Randoms.shuffle(menus).get(0);
+        return menu;
     }
 }
 
