@@ -1,7 +1,9 @@
 package view;
 
+import menu.CategoryAndMenu;
 import utils.Parser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
@@ -42,13 +44,17 @@ public class OutputView {
         System.out.println(resultMessage);
     }
 
-    public static void printResultFormat(List<String> string) {
-        System.out.println(String.format(resultFormat, Parser.joinWithBlank(string)));
+    public static void printResultCategory(List<Integer> categoryCodes) {
+        List<String> categoryNames = new ArrayList<>();
+        categoryNames.add("카테고리");
+        for(int day = 0; day < 5; day++){
+            categoryNames.add(CategoryAndMenu.getCategory(categoryCodes.get(day)));
+        }
+        System.out.println(String.format(resultFormat, Parser.joinWithBlank(categoryNames)));
     }
 
-    public static void print() {
-        System.out.println();
+    public static void printResultCoachMenu(String name, List<String> menus) {
+        menus.add(0, name);
+        System.out.println(String.format(resultFormat, Parser.joinWithBlank(menus)));
     }
-
-
 }

@@ -1,37 +1,48 @@
 package menu;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 //  특정 코치의 5일 메뉴 추천(못 먹는 음식, 중복 음식 불가능)
 public class MenuMaker {
-    private Coach coach;
+    private final List<Coach> coachs;
     // 같은 카테고리 3회이상 나오지 않도록 만들어짐!
     private final List<Integer> categoryCodes;
 
-    public MenuMaker(Coach coach, List<Integer> categoryCodes) {
-        this.coach = coach;
+    private LinkedHashMap<Coach, List<String>> fiveDayMenus = new LinkedHashMap<>();
+
+    public MenuMaker(List<Coach> coachs, List<Integer> categoryCodes) {
+        this.coachs = coachs;
         this.categoryCodes = categoryCodes;
     }
 
-    public List<String> makeFiveDayMenus() {
-        List<String> fiveDayMenus = new ArrayList<>();
-        for (int day = 0; day < categoryCodes.size(); day++) {
+    // 현재: 한 코치의 5일치 식단을 한 번에 처리
+    // 테스트코드 : 월 / 화 ..각각 들어 그래서 테스트코드에서 문제 발생!!
+    // 월 코드 2개 > 각 코치들에게 각각 들어감...그래서 각 요일마다 각 코치를 처리해여함.
+    public List<String> makeOneDayCoachMenu(int day) {
+        for (int number = 0; number < coachs.size(); number++) {
+
+            Coach coach = coachs.get(number);
+
             List<String> menus = MenuRecommender.recommadateCategory(categoryCodes.get(day));
 
-            String oneDayMenu = makeOneDayMenu(menus, fiveDayMenus);
-
-            fiveDayMenus.add(oneDayMenu);
+            if (!fiveDayMenus.containsKey(coach)) {
+                fiveDayMenus.put(coach, new ArrayList<>());
+            }
+            String oneDayMenu = makeOneDayMenu(menus, coach);
+            fiveDayMenus.get(coach).add(oneDayMenu);
         }
-        return fiveDayMenus;
+        return List.of();
     }
 
-    public String makeOneDayMenu(List<String> menus, List<String> fiveDayMenus) {
+    public String makeOneDayMenu(List<String> menus, Coach coach) {
         while (true) {
             String menu = MenuRecommender.selectMenu(menus);
-            if (!fiveDayMenus.contains(menu) && !coach.getImpossibleMenus().contains(menu)) {
+            if (!coach.getImpossibleMenus().contains(menu) && !fiveDayMenus.get(coach).contains(menu)) {
                 return menu;
             }
         }
+    }
+    public LinkedHashMap<Coach, List<String>> getFiveDayMenus() {
+        return fiveDayMenus;
     }
 }

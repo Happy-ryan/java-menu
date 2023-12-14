@@ -4,6 +4,7 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class Application {
@@ -28,11 +29,16 @@ public class Application {
         OutputView.printResultMessage();
 
         List<Integer> categoryCodes = CategoryMaker.makeCategoryCodes();
-        System.out.println(categoryCodes);
-        for(int number = 0; number < coachNumber ; number++){
-            MenuMaker menuMaker = new MenuMaker(coaches.get(number), categoryCodes);
-            System.out.println(coaches.get(number).getName() + menuMaker.makeFiveDayMenus());
+        OutputView.printResultCategory(categoryCodes);
 
+        MenuMaker menuMaker = new MenuMaker(coaches, categoryCodes);
+        for(int day = 0; day < 5 ; day++){
+            menuMaker.makeOneDayCoachMenu(day);
+        }
+        LinkedHashMap<Coach, List<String>> fiveDayMenus = menuMaker.getFiveDayMenus();
+
+        for(Coach coach : coaches){
+            OutputView.printResultCoachMenu(coach.getName(),fiveDayMenus.get(coach));
         }
 
         System.out.println();

@@ -1,7 +1,5 @@
 package menu;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.List;
 
 public enum CategoryAndMenu {
@@ -13,25 +11,44 @@ public enum CategoryAndMenu {
     양식(5, "양식", List.of("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"));
 
     private final int code;
-    private final String name;
-    private final List<String> dishes;
+    private final String category;
+    private final List<String> menus;
 
-    CategoryAndMenu(int code, String name, List<String> dishes) {
+    CategoryAndMenu(int code, String category, List<String> menus) {
         this.code = code;
-        this.name = name;
-        this.dishes = dishes;
+        this.category = category;
+        this.menus = menus;
     }
 
     public int getCode() {
         return code;
     }
 
-    public String getName() {
-        return name;
+    public List<String> getMenus() {
+        return menus;
     }
 
-    public List<String> getDishes() {
-        return dishes;
+    public String getCategory() {
+        return category;
+    }
+
+    public static String getCategory(int categoryCode) {
+        if (categoryCode == 1) {
+            return CategoryAndMenu.일식.getCategory();
+        }
+        if (categoryCode == 2) {
+            return CategoryAndMenu.한식.getCategory();
+        }
+        if (categoryCode == 3) {
+            return CategoryAndMenu.중식.getCategory();
+        }
+        if (categoryCode == 4) {
+            return CategoryAndMenu.아시안.getCategory();
+        }
+        if (categoryCode == 5) {
+            return CategoryAndMenu.양식.getCategory();
+        }
+        return CategoryAndMenu.UNKNOWN.getCategory();
     }
 }
 

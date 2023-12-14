@@ -12,21 +12,21 @@ public class MenuRecommender {
 
     public static List<String> recommadateCategory(int code) {
         if (code == CategoryAndMenu.일식.getCode()) {
-            return CategoryAndMenu.일식.getDishes();
+            return CategoryAndMenu.일식.getMenus();
         }
         if (code == CategoryAndMenu.한식.getCode()) {
-            return CategoryAndMenu.한식.getDishes();
+            return CategoryAndMenu.한식.getMenus();
         }
         if (code == CategoryAndMenu.중식.getCode()) {
-            return CategoryAndMenu.중식.getDishes();
+            return CategoryAndMenu.중식.getMenus();
         }
         if (code == CategoryAndMenu.아시안.getCode()) {
-            return CategoryAndMenu.아시안.getDishes();
+            return CategoryAndMenu.아시안.getMenus();
         }
         if (code == CategoryAndMenu.양식.getCode()) {
-            return CategoryAndMenu.양식.getDishes();
+            return CategoryAndMenu.양식.getMenus();
         }
-        return CategoryAndMenu.UNKNOWN.getDishes();
+        return CategoryAndMenu.UNKNOWN.getMenus();
     }
 
     public static String selectMenu(List<String> menus) {
